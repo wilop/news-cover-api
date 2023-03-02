@@ -1,31 +1,53 @@
-# News Cover API 
+# News Cover API
 
-## Getting Start
+## Getting Started
 
-### Configure NodeJS
-Use version 18 lts
+Configure NodeJS with version 18 lts.
 
 ``` bash
 nvm install --lts
 nvm use --lts
 ```
 
-## Install dependencies
-Install the following NodeJS packages
+### Clone repository
+
+To clone this repository just copy and run this command in your terminal.
+
+``` bash
+git clone https://github.com/wilop/news-cover-api.git
+```
+
+### Install dependencies
+
+Add a list of dependencies used in project here.
+* express
+* cors
+* body-parser
+* mongoose
+* nodemon
+
+#### Install NodeJS packages
+
+To install dependencies just copy and run this command in your terminal.
 
 ```bash
-npm install express cors body-parser nodemon mongoose
+npm install
 ```
+
+To install additional dependencies just run `npm install` __package__ in your terminal and add it to previous list.
+
 ## WorkTree 
 
-        Model: This directory contains data models  
-        
-        Controllers: 
-        This directory contains controllers
+Add directories and a short description here.
 
+> **models:**  
+This directory contains data models.
+        
+> **controllers:**  
+This directory contains controllers.
 
 ## TODO
-A checklist of things to do.  
+Add a checklist of things to do in this section.  
 
-- [X] A thing to do
+- [ ] Firts thing to do
 - [ ] Another thing to do
