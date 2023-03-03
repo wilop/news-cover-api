@@ -43,6 +43,7 @@ After installing dotenv, create a file name .env and add the follow variables wi
 ```
 DB_CONNECTION = mongodb://127.0.0.1:27017/mynewscover *mongo db string conection*
 PORT = 4000  *port to be listeng in the app*
+URL = http://locahost
 ```
 
 ## WorkTree 
