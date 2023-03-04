@@ -39,7 +39,7 @@ npm install
 To install additional dependencies just run `npm install` __package__ in your terminal and add it to previous list.
 
 #### Create enviroment variables
-After installing dotenv, create a file name .env and add the follow variables with respective information, this is an example and the '* *' should be ignore:
+After installing dotenv, create a file name .env and add the following variables with respective information, this is an example and the '* *' should be ignore:
 ```
 DB_CONNECTION = mongodb://127.0.0.1:27017/mynewscover *mongo db string conection*
 PORT = 4000  *port to be listeng in the app*
