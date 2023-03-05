@@ -47,8 +47,23 @@ router.get('/id=:id', (req, res) => {
     }
 });
 
-router.get('/search', (req, res) => {
-    console.log(req.query);
+router.get('/search', async(req, res) => {
+    if(req.query){
+        const roleFound = await RoleModel.find(req.query);
+        res
+            .status(200)
+            .json({
+                model: "role",
+                data: roleFound
+            })
+    }
+    else{
+        res
+            .status(404)
+            .json({
+                Message: "Role not found or search parameters wrong!"
+            })
+    }
 });
 
 /*router.post('/', (req, res) => {
