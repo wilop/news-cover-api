@@ -13,8 +13,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // routes
-const user = require('./controllers/userControler')
+const user = require('./controllers/userControler');
 app.use('/user',user);
+
+const role = require('./controllers/roleControler');
+app.use('/role', role);
 
 // run the app
 app.listen(process.env.PORT,
