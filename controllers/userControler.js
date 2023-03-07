@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { model: UserModel } = require('../models/userModel');
+const { model: RoleModel } = require('../models/roleModel');
 require('dotenv/config');
 const url = `${process.env.URL}:${process.env.PORT}/`;
 
@@ -78,9 +79,11 @@ router.get('/search', async (req, res) => {
     }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     if (req.body) {
+        const clientRole = await RoleModel.findOne(req.body.role);
         const newUser = UserModel(req.body);
+        newUser.role = clientRole;
         newUser.save()
             .then(user => {
                 res
