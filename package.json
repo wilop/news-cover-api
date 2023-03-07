@@ -1,5 +1,5 @@
 {
-  "name": "new-cover-api",
+  "name": "news-cover-api",
   "version": "1.0.0",
   "description": "An API for News Cover APPs",
   "main": "index.js",
@@ -8,7 +8,8 @@
     "start": "nodemon index.js"
   },
   "keywords": [
-    "news"
+    "news",
+    "API"
   ],
   "author": "Wilberth Antonio López Aguilar",
   "license": "ISC",
