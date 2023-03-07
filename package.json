@@ -1,5 +1,5 @@
 {
-  "name": "new-cover-api",
+  "name": "news-cover-api",
   "version": "1.0.0",
   "description": "An API for News Cover APPs",
   "main": "index.js",
@@ -8,8 +8,15 @@
     "start": "nodemon index.js"
   },
   "keywords": [
-    "news"
+    "news",
+    "API"
   ],
   "author": "Wilberth Antonio López Aguilar",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "nodemon": "^2.0.20"
+  }
 }
