@@ -92,9 +92,9 @@ This directory contains controllers.
     - [ ] El usuario administrador podrá realizar un CRUD de categorías.
 
 ### Endpoints
-- [ ] **/user** Get and Register an user 
-    - [ ] GET
-    - [ ] POST
+- [X] **/user** Get and Register an user 
+    - [X] GET
+    - [X] POST
 - [ ] **/session** Authenticate an user 
     - [ ] POST
 - [ ] **/newsource** Manage news sources 

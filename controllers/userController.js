@@ -55,20 +55,31 @@ router.get('/id=:id', (req, res) => {
 
 router.get('/search', async (req, res) => {
     if (req.query) {
-        const users = await UserModel.find(req.query);
-        res
-            .status(200)
-            .json({
-                model: "user",
-                data: users
-            })
-            .catch(err => {
+        try {
+            const users = await UserModel.find(req.query);
+            if(users.length > 0){
+                res
+                    .status(200)
+                    .json({
+                        model: "user",
+                        data: users
+                    })
+            }
+            else{
                 res
                     .status(404)
                     .json({
-                        Message: err
+                        Message: "Not found"
                     })
-            });
+            }
+        }
+        catch (err) {
+            res
+                .status(404)
+                .json({
+                    Message: err
+                })
+        }
     }
     else {
         res
