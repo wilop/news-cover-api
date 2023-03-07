@@ -3,7 +3,7 @@ const router = express.Router();
 const { model: UserModel } = require('../models/userModel');
 const { model: RoleModel } = require('../models/roleModel');
 require('dotenv/config');
-const url = `${process.env.URL}:${process.env.PORT}/`;
+const url = `${process.env.URL || 'http://localhost'}:${process.env.PORT || 4000}/`;
 
 router.get('/', (req, res) => {
     UserModel.find({})

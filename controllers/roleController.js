@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
         });
 });
 
-/*router.post('/', (req, res) => {
+router.post('/', (req, res) => {
     const newRole = new RoleModel(req.body);
     newRole.save()
         .then(roleAdded => {
@@ -37,6 +37,6 @@ router.get('/', (req, res) => {
                     Message: err
                 })
         })
-});*/
+});
 
 module.exports = router;
