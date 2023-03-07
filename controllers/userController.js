@@ -5,7 +5,7 @@ const { model: RoleModel } = require('../models/roleModel');
 require('dotenv/config');
 const url = `${process.env.URL}:${process.env.PORT}/`;
 
-router.get('/user', (req, res) => {
+router.get('/', (req, res) => {
     UserModel.find({})
         .then(users => {
             res

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const RoleModel = require('../models/roleModel');
+const {model:RoleModel} = require('../models/roleModel');
 
-router.get('/role', (req, res) => {
+router.get('/', (req, res) => {
     RoleModel.find({})
         .then(roles => {
             res
