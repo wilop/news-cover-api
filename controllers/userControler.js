@@ -115,7 +115,7 @@ router.post('/', async (req, res) => {
 
 router.put('/id=:id', (req, res) => {
     if (req.body) {
-        UserModel.findByIdAndUpdate(req.body._id,
+        UserModel.findByIdAndUpdate(req.params.id,
             {
                 email: req.body.email,
                 first_name: req.body.first_name,
