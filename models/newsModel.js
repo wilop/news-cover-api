@@ -15,7 +15,9 @@ const newsSchema = new Schema({
     "cathegory": { type: CathegorySchema.schema,  required: true },
 });
 
+const newsModel = mongoose.model('News', newsSchema);
+
 module.exports = {
-    "model": mongoose.model("roles", newsSchema),
+    "model": newsModel,
     "schema": newsSchema
 };

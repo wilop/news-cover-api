@@ -5,7 +5,9 @@ const cathegorySchema = new Schema({
     "name": { type: String,  required: true },
 });
 
+const cathegoryModel = mongoose.model('Category', cathegorySchema);
+
 module.exports = {
-    "model": mongoose.model("roles", cathegorySchema),
+    "model": cathegoryModel,
     "schema": cathegorySchema
 };

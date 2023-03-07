@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { model: RoleModel } = require('../models/roleModel');
+const RoleModel = require('../models/roleModel');
 
 router.get('/role', (req, res) => {
     RoleModel.find({})
@@ -18,3 +18,5 @@ router.get('/role', (req, res) => {
                 .json({ Message: err })
         });
 });
+
+module.exports = router;
