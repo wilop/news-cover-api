@@ -17,14 +17,14 @@ router.get('/', (req, res) => {
         .catch(err => {
             res
                 .status(404)
-                .json({ 
-                    Message: err 
+                .json({
+                    Message: err
                 });
         });
 });
 
 router.get('/id=:id', (req, res) => {
-    if(req.params.id){
+    if (req.params.id) {
         UserModel.findById(req.params.id)
             .then(users => {
                 res
@@ -37,12 +37,12 @@ router.get('/id=:id', (req, res) => {
             .catch(err => {
                 res
                     .status(404)
-                    .json({ 
-                        Message: err 
+                    .json({
+                        Message: err
                     });
             });
     }
-    else{
+    else {
         res
             .status(422)
             .json({
@@ -52,8 +52,34 @@ router.get('/id=:id', (req, res) => {
 
 });
 
+router.get('/search', async (req, res) => {
+    if (req.query) {
+        const users = await UserModel.find(req.query);
+        res
+            .status(200)
+            .json({
+                model: "user",
+                data: users
+            })
+            .catch(err => {
+                res
+                    .status(404)
+                    .json({
+                        Message: err
+                    })
+            });
+    }
+    else {
+        res
+            .status(404)
+            .json({
+                Message: "Query string empty"
+            });
+    }
+});
+
 router.post('/', (req, res) => {
-    if(req.body){
+    if (req.body) {
         const newUser = UserModel(req.body);
         newUser.save()
             .then(user => {
@@ -63,23 +89,85 @@ router.post('/', (req, res) => {
                         'location': `${url}user/id=${user.id}`
                     })
                     .json({
-                        model : "user",
+                        model: "user",
                         data: user
                     });
             })
             .catch(err => {
                 res
                     .status(422)
-                    .json({ 
-                        Message: err 
+                    .json({
+                        Message: err
                     });
             });
     }
-    else{
+    else {
         res
             .status(422)
             .json({
                 Message: "Invalid information."
+            })
+    }
+});
+
+router.put('/id=:id', (req, res) => {
+    if (req.body) {
+        UserModel.findByIdAndUpdate(req.body._id,
+            {
+                email: req.body.email,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name
+            },
+            { new: true })
+            .then(userUpdated => {
+                res
+                    .status(200)
+                    .json({
+                        model: "user",
+                        data: userUpdated
+                    })
+            })
+            .catch(err => {
+                res
+                    .status(422)
+                    .json({
+                        Message: err
+                    })
+            });
+    }
+    else {
+        res
+            .status(422)
+            .json({
+                Message: "Unprocess entity"
+            });
+    }
+});
+
+router.delete('/id=:id', (req, res) => {
+    if (req.params.id) {
+        UserModel.findByIdAndDelete(req.params.id)
+            .then(userDeleted => {
+                res
+                    .json({
+                        model: "user",
+                        data: userDeleted
+                    })
+                    .status(204)
+            })
+            .catch(err => {
+                res
+                    .status(404)
+                    .json({
+                        Message: err
+                    })
+            })
+    }
+    else {
+        res
+            .status(404)
+            .json({
+                Message: "User id not provided"
             })
     }
 });
