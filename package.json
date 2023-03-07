@@ -12,11 +12,5 @@
     "API"
   ],
   "author": "Wilberth Antonio López Aguilar",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "mongoose": "^7.0.0",
-    "nodemon": "^2.0.20"
-  }
+  "license": "ISC"
 }
