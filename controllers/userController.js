@@ -2,11 +2,12 @@
 module.exports = router;
 const express = require('express');
 const router = express.Router();
-const { model: UserModel } = require('../models/userModel');
+const UserModel = require('../models/userModel');
+
 require('dotenv/config');
 const url = `${process.env.URL}:${process.env.PORT}/`;
 
-router.get('/', (req, res) => {
+router.get('/user', (req, res) => {
     UserModel.find({})
         .then(users => {
             res
@@ -25,7 +26,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/id=:id', (req, res) => {
+router.get('/user/:id', (req, res) => {
     if(req.params.id){
         UserModel.findById(req.params.id)
             .then(users => {
@@ -54,7 +55,7 @@ router.get('/id=:id', (req, res) => {
 
 });
 
-router.post('/', (req, res) => {
+router.post('/user', (req, res) => {
     if(req.body){
         const newUser = UserModel(req.body);
         newUser.save()

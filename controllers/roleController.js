@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { model: RoleModel } = require('../models/roleModel');
 
-router.get('/', (req, res) => {
+router.get('/role', (req, res) => {
     RoleModel.find({})
         .then(roles => {
             res
