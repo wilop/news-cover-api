@@ -27,6 +27,7 @@ Add a list of dependencies used in project here.
 * nodemon
 * jsonwebtoken
 * dotenv
+* moment
 
 #### Install NodeJS packages
 
