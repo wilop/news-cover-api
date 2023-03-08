@@ -49,7 +49,14 @@ router.post('/', async (req, res) => {
 
 function getSession(token) {
     if (token) {
-        return jwt.verify(token, secretPhrase);
+        try { 
+            const jsonToken = jwt.verify(token, secretPhrase);
+            return jsonToken;
+        }
+        catch (err) {
+            console.log(err);
+            return null;
+        }
     }
     else {
         return null;
