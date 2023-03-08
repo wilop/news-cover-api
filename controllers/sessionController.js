@@ -42,8 +42,21 @@ router.post('/', async (req, res) => {
 
 });
 
-function addhours(date, hours) {
+/*function addhours(date, hours) {
     date.setTime(date.getHours() + hours * 60 * 60 * 1000);
     return date;
+}*/
+
+function getSession(token) {
+    if (token) {
+        return jwt.verify(token, secretPhrase);
+    }
+    else {
+        return null;
+    }
 }
-module.exports = router;
+
+module.exports = {
+    router,
+    getSession
+}
