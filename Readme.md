@@ -28,6 +28,7 @@ Add a list of dependencies used in project here.
 * jsonwebtoken
 * dotenv
 * moment
+* rss-parser
 
 #### Install NodeJS packages
 
