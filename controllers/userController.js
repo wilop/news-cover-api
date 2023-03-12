@@ -57,7 +57,7 @@ router.get('/search', async (req, res) => {
     if (req.query) {
         try {
             const users = await UserModel.find(req.query);
-            if(users.length > 0){
+            if (users.length > 0) {
                 res
                     .status(200)
                     .json({
@@ -65,7 +65,7 @@ router.get('/search', async (req, res) => {
                         data: users
                     })
             }
-            else{
+            else {
                 res
                     .status(404)
                     .json({
@@ -90,9 +90,10 @@ router.get('/search', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+// addUser is the post method, created as constant function to POST user wihtout toke verification
+const addUser = (async (req, res) => {
     if (req.body) {
-        const clientRole = await RoleModel.findOne(req.body.role);
+        const clientRole = await RoleModel.findOne({ "name": req.body.role.name }) || await RoleModel.findOne({ "name": "user" });
         const newUser = UserModel(req.body);
         newUser.role = clientRole;
         newUser.save()
@@ -186,4 +187,4 @@ router.delete('/id=:id', (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = {router, addUser};

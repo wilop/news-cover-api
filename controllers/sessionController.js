@@ -1,7 +1,6 @@
 
 const express = require('express');
 const router = express.Router();
-const moment = require('moment');
 const { model: UserModel } = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const secretPhrase = process.env.SECRET_PHRASE || "mynewscover";
@@ -10,12 +9,11 @@ router.post('/', async (req, res) => {
     if (req.body.email) {
         const userLoggin = await UserModel.findOne({ email: req.body.email });
         if (userLoggin) {
-            const today = moment(Date.now()).add('1', 'hour');
+            //const today = moment(Date.now()).add('1', 'hour');
             const newToken = jwt.sign({
                 "email": userLoggin.email,
-                "role": userLoggin.role.name,
-                "expire": today
-            }, secretPhrase);
+                "role": userLoggin.role.name
+            }, secretPhrase, { expiresIn: "1h" });
             res
                 .status(201)
                 .json({
@@ -49,7 +47,7 @@ router.post('/', async (req, res) => {
 
 function getSession(token) {
     if (token) {
-        try { 
+        try {
             const jsonToken = jwt.verify(token, secretPhrase);
             return jsonToken;
         }
@@ -63,7 +61,41 @@ function getSession(token) {
     }
 }
 
+function tokenVerification(req, res, next) {
+    if (req.headers["authorization"]) {
+        const token = req.headers['authorization'].split(' ')[1];
+        try {
+            //validate token
+            const session = getSession(token);
+            if (session) {
+                res.locals.session = session;
+                next();
+                return;
+            }
+            else {
+                res
+                    .status(422)
+                    .json({
+                        Message: "Token invalid or expired."
+                    })
+
+            }
+        } catch (e) {
+            res.status(422);
+            res.send({
+                error: "There was an error: " + e.message
+            });
+        }
+    } else {
+        res.status(401);
+        res.send({
+            error: "Unauthorized "
+        });
+    }
+}
+
 module.exports = {
     router,
-    getSession
+    getSession,
+    tokenVerification
 }

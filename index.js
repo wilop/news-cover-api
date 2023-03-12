@@ -16,15 +16,24 @@ mongoose.connect(db, console.log('Connected to the database'));
 app.use(cors());
 app.use(bodyParser.json());
 
+// session
+const { router: session } = require('./controllers/sessionController');
+app.use('/session', session);
+
+// POST user
+const { addUser } = require('./controllers/userController')
+app.post('/user', addUser);
+
+// Token verification
+const { tokenVerification } = require('./controllers/sessionController');
+app.use(tokenVerification);
+
 // routes
-const user = require('./controllers/userController')
+const { router: user } = require('./controllers/userController')
 app.use('/user', user);
 
 const role = require('./controllers/roleController');
 app.use('/role', role);
-
-const { router: session } = require('./controllers/sessionController');
-app.use('/session', session);
 
 const newsSource = require('./controllers/newsSourceController');
 app.use('/newsource', newsSource);
