@@ -7,7 +7,7 @@ const UserSchema = require('./userModel');
 const newsSourceSchema = new Schema({
     "url": { type: String,  required: true },
     "name": { type: String,  required: true },
-    "cathegory": { type: CategorySchema.schema,  required: true },
+    "category": { type: CategorySchema.schema,  required: true },
     "user": { type: UserSchema.schema,  required: true },
 });
 
