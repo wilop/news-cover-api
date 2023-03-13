@@ -20,6 +20,14 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+    if (res.locals.session.role !== "admin") {
+        res
+            .status(401)
+            .json({
+                Message: "Unauthorized"
+            })
+        return;
+    }
     const newRole = new RoleModel(req.body);
     newRole.save()
         .then(roleAdded => {

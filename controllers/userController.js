@@ -90,7 +90,7 @@ router.get('/search', async (req, res) => {
     }
 });
 
-// addUser is the post method, created as constant function to POST user wihtout toke verification
+// addUser is the post method, created as constant function to POST user wihtout token verification
 const addUser = (async (req, res) => {
     if (req.body) {
         const clientRole = await RoleModel.findOne({ "name": req.body.role.name }) || await RoleModel.findOne({ "name": "user" });
@@ -129,7 +129,6 @@ router.put('/id=:id', (req, res) => {
     if (req.body) {
         UserModel.findByIdAndUpdate(req.params.id,
             {
-                email: req.body.email,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name
             },
@@ -154,12 +153,20 @@ router.put('/id=:id', (req, res) => {
         res
             .status(422)
             .json({
-                Message: "Unprocess entity"
+                Message: "Unprocessable entity"
             });
     }
 });
 
 router.delete('/id=:id', (req, res) => {
+    if (res.locals.session.role !== "admin") {
+        res
+            .status(401)
+            .json({
+                Message: "Unauthorized"
+            })
+        return;
+    }
     if (req.params.id) {
         UserModel.findByIdAndDelete(req.params.id)
             .then(userDeleted => {
