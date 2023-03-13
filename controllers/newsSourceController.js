@@ -23,6 +23,7 @@ router.get('/', async (req, res) => {
                 })
         })
 });
+
 router.post('/', async (req, res) => {
     if (req.body) {
         try {
@@ -55,7 +56,7 @@ router.post('/', async (req, res) => {
             res
                 .status(422)
                 .json({
-                    Messge: err
+                    Message: err
                 })
         }
     } else {

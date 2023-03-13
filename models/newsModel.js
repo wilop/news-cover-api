@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const newsSourceSchema = require('./newsSourceModel');
-const CategorySchema = require('./cathegoryModel');
-const UserSchema = require('./userModel');
+const CategorySchema = require('./categoryModel');
+const RoleSchema = require('./roleModel');
 
 const newsSchema = new Schema({
     "title": { type: String,  required: true },
@@ -11,7 +11,12 @@ const newsSchema = new Schema({
     "permalink": { type: String,  required: true },
     "date": { type: Date,  required: true },
     "news_source": { type: newsSourceSchema.schema,  required: true },
-    "user": { type: UserSchema.schema,  required: true },
+    "user": {
+        "email": { type: String, required: true },
+        "first_name": { type: String, required: true },
+        "last_name": { type: String, required: true },
+        "role": { type: RoleSchema.schema, required: true }
+    },
     "category": { type: CategorySchema.schema,  required: true },
 });
 
