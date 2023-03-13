@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const CathegorySchema = require('./cathegoryModel');
+const CategorySchema = require('./categoryModel');
 const UserSchema = require('./userModel');
 
 const newsSourceSchema = new Schema({
     "url": { type: String,  required: true },
     "name": { type: String,  required: true },
-    "cathegory": { type: CathegorySchema.schema,  required: true },
+    "cathegory": { type: CategorySchema.schema,  required: true },
     "user": { type: UserSchema.schema,  required: true },
 });
 
