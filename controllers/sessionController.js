@@ -12,6 +12,7 @@ router.post('/', async (req, res) => {
             //const today = moment(Date.now()).add('1', 'hour');
             const newToken = jwt.sign({
                 "email": userLoggin.email,
+                "user_id": userLoggin._id,
                 "role": userLoggin.role.name
             }, secretPhrase, { expiresIn: "1h" });
             res
