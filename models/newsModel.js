@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const newsSourceSchema = require('./newsSourceModel');
-const CathegorySchema = require('./cathegoryModel');
+const CategorySchema = require('./cathegoryModel');
 const UserSchema = require('./userModel');
 
 const newsSchema = new Schema({
@@ -12,7 +12,7 @@ const newsSchema = new Schema({
     "date": { type: Date,  required: true },
     "news_source": { type: newsSourceSchema.schema,  required: true },
     "user": { type: UserSchema.schema,  required: true },
-    "cathegory": { type: CathegorySchema.schema,  required: true },
+    "category": { type: CategorySchema.schema,  required: true },
 });
 
 const newsModel = mongoose.model('News', newsSchema);
