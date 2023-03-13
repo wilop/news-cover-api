@@ -62,15 +62,15 @@ This directory contains controllers.
 ### Funcionalidades
 - [ ] Web API
     1. [ ] Gestión de Fuentes de Noticias
-        - [ ] CRUD
+        - [X] CRUD
         - [ ] Cargar: Se debe desarrollar un proceso que ejecutado por medio de un request al API procesa las fuentes de noticias de un usuario específico, cada noticia identificada por el proceso se agrega a la base de datos y se asocia al usuario específico.
     2. [ ] Gestión de Noticias
         - [ ] CRUD
         - [ ] Filtrar por categoria
-    - [ ] Gestión de usuarios
-        - [ ] CRUD
-        - [ ] Autenticar 
-    - [ ] Gestion de Categorias
+    - [X] Gestión de usuarios
+        - [X] CRUD
+        - [X] Autenticar 
+    - [X] Gestion de Categorias
 - [ ] Aplicación Cliente
     - [ ] Es necesario un usuario y una contraseña para poder ingresar al sistema.
     - [ ] Los usuarios podrán registrarse en el sistema utilizando un formulario e incluyendo sus datos personales.
@@ -97,20 +97,20 @@ This directory contains controllers.
 - [X] **/user** Get and Register an user 
     - [X] GET
     - [X] POST
-- [ ] **/session** Authenticate an user 
-    - [ ] POST
-- [ ] **/newsource** Manage news sources 
-    - [ ] GET
-    - [ ] POST
-    - [ ] PUT
-    - [ ] DELETE
+- [X] **/session** Authenticate an user 
+    - [X] POST
+- [X] **/newsource** Manage news sources 
+    - [X] GET
+    - [X] POST
+    - [X] PUT
+    - [X] DELETE
 - [ ] **/newsource/{id}/process** Read the RSS and insert the news associated to the owner of the newsource
     - [ ] POST
-- [ ] **/categories** Manage categories 
-    - [ ] GET
-    - [ ] POST
-    - [ ] PUT
-    - [ ] DELETE
+- [X] **/categories** Manage categories 
+    - [X] GET
+    - [X] POST
+    - [X] PUT
+    - [X] DELETE
 - [ ] **/news/{user_Id}** Get the news of the user
     - [ ] GET
 - [ ] **/news/{user_Id}?category=categoryId** Filter news by category
