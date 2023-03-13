@@ -38,5 +38,8 @@ app.use('/role', role);
 const newsSource = require('./controllers/newsSourceController');
 app.use('/newsource', newsSource);
 
+const category = require('./controllers/categoryController');
+app.use('/category',category);
+
 // run the app
 app.listen(port, () => console.log(`App listening on port: ${port}`)); 
