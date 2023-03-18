@@ -1,0 +1,329 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "News Cover API Collection",
+    "dateExported": "2023-03-18T23:00:53.531Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "1f56ff58-63c6-498c-9411-2097c26c07f3",
+            "name": "user",
+            "containerId": "",
+            "created": "2023-03-18T18:55:06.535Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "2569ae2c-a495-496d-a501-b89f53b326ac",
+            "name": "session",
+            "containerId": "",
+            "created": "2023-03-18T21:06:23.909Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "0f3a1072-2cc2-4caa-b6eb-d0ee7916bbd7",
+            "name": "newsource",
+            "containerId": "",
+            "created": "2023-03-18T21:46:03.280Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "12722bcd-0176-4f76-936d-21dea21101b5",
+            "name": "categories",
+            "containerId": "",
+            "created": "2023-03-18T22:13:18.321Z",
+            "sortNum": 70000
+        },
+        {
+            "_id": "c80c24b1-c81b-4112-9635-091347bc2593",
+            "name": "news",
+            "containerId": "",
+            "created": "2023-03-18T22:13:43.511Z",
+            "sortNum": 80000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "1f317288-67aa-4029-b2e8-0088ced724f9",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "1f56ff58-63c6-498c-9411-2097c26c07f3",
+            "name": "Get users",
+            "url": "/user",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-03-18T18:55:32.312Z",
+            "modified": "2023-03-18T21:53:47.312Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c3145797-b832-48d5-8b22-95682a1c49ad",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "1f56ff58-63c6-498c-9411-2097c26c07f3",
+            "name": "Register an user",
+            "url": "/user",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-03-18T20:42:25.150Z",
+            "modified": "2023-03-18T21:51:36.460Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"dev_testing_tool@outlook.com\",\n  \"first_name\":\"Wilbert\",\n  \"last_name\":\"López\",\n  \"role\":{\"name\":\"user\"}\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5635b793-b8b1-4932-a0fb-473f55043023",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "2569ae2c-a495-496d-a501-b89f53b326ac",
+            "name": "Authenticate an user",
+            "url": "http://localhost:4000/session",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-03-18T21:06:57.959Z",
+            "modified": "2023-03-18T21:13:18.557Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"dev_testing_tool@outlook.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fdac74a7-e988-4e3a-bc6e-24f7cac78909",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "0f3a1072-2cc2-4caa-b6eb-d0ee7916bbd7",
+            "name": "Get news sources",
+            "url": "/newsource",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-03-18T21:46:55.409Z",
+            "modified": "2023-03-18T21:54:14.739Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "471a0ef5-e6d6-4077-bf2b-17dfc7a69f6f",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "0f3a1072-2cc2-4caa-b6eb-d0ee7916bbd7",
+            "name": "Add a news source",
+            "url": "/newsource",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-03-18T21:57:25.280Z",
+            "modified": "2023-03-18T22:38:18.591Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"url\":\"https://feeds.feedburner.com/NacionalesCrhoycomPeriodicoDigitalCostaRicaNoticias\",\n  \"name\":\"CR Hoy Nacionales\",\n  \"user\":\"dev_testing_tool@outlook.com\"\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "3977af9e-10c2-4a16-9467-1b17c02e7322",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "12722bcd-0176-4f76-936d-21dea21101b5",
+            "name": "Get categories",
+            "url": "/categories",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-03-18T22:14:53.650Z",
+            "modified": "2023-03-18T22:15:18.574Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "43ce94b1-1521-4393-8fff-8162e4babb78",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "12722bcd-0176-4f76-936d-21dea21101b5",
+            "name": "Add a category",
+            "url": "/categories",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2023-03-18T22:17:12.401Z",
+            "modified": "2023-03-18T22:30:31.835Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Nacionales\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9c88589c-5a0b-4986-bb0d-480eb51d244d",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "12722bcd-0176-4f76-936d-21dea21101b5",
+            "name": "Update a category",
+            "url": "/categories/{Id}",
+            "method": "PUT",
+            "sortNum": 130000,
+            "created": "2023-03-18T22:25:27.482Z",
+            "modified": "2023-03-18T22:57:44.802Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "Id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Nacionales\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c50df784-986d-4aa9-991e-4428b3fba10c",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "12722bcd-0176-4f76-936d-21dea21101b5",
+            "name": "Delete a category",
+            "url": "/categories/{Id}",
+            "method": "DELETE",
+            "sortNum": 150000,
+            "created": "2023-03-18T22:32:36.448Z",
+            "modified": "2023-03-18T22:58:34.992Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "Id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Nacionales\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "aaf7fc80-b386-4a7f-b173-e3bed9e25da5",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "0f3a1072-2cc2-4caa-b6eb-d0ee7916bbd7",
+            "name": "Update a news source",
+            "url": "/newsource/{Id}",
+            "method": "PUT",
+            "sortNum": 160000,
+            "created": "2023-03-18T22:37:32.919Z",
+            "modified": "2023-03-18T22:59:48.955Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "Id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "3e9ecc01-4347-4aa8-98e5-3405f74692f5",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "0f3a1072-2cc2-4caa-b6eb-d0ee7916bbd7",
+            "name": "Delete a news source",
+            "url": "/newsource/{Id}",
+            "method": "DELETE",
+            "sortNum": 170000,
+            "created": "2023-03-18T22:39:43.171Z",
+            "modified": "2023-03-18T22:59:25.387Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "Id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "f49afd6c-6d6d-4168-bca8-1c19a4486b80",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "0f3a1072-2cc2-4caa-b6eb-d0ee7916bbd7",
+            "name": "Read the RSS",
+            "url": "/newsource/{id}/process",
+            "method": "POST",
+            "sortNum": 180000,
+            "created": "2023-03-18T22:44:55.540Z",
+            "modified": "2023-03-18T22:45:58.893Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "cbaff623-0032-40da-93e6-2e4fd6156345",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "c80c24b1-c81b-4112-9635-091347bc2593",
+            "name": "Get user's news",
+            "url": "/news/{user_id}",
+            "method": "GET",
+            "sortNum": 190000,
+            "created": "2023-03-18T22:47:07.121Z",
+            "modified": "2023-03-18T22:47:52.838Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "user_id",
+                    "value": "",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "526d9f08-d478-41bf-a6db-865f15956f7d",
+            "colId": "e1c8b24f-7f81-4c61-9ae3-4c6840e4d887",
+            "containerId": "c80c24b1-c81b-4112-9635-091347bc2593",
+            "name": "Filter news by category",
+            "url": "/news/{user_id}?category=categoryId",
+            "method": "GET",
+            "sortNum": 200000,
+            "created": "2023-03-18T22:48:19.974Z",
+            "modified": "2023-03-18T22:49:13.966Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "user_id",
+                    "value": "",
+                    "isPath": true
+                },
+                {
+                    "name": "category",
+                    "value": "categoryId",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "headers": [],
+        "auth": {
+            "type": "bearer",
+            "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldl90ZXN0aW5nX3Rvb2xAb3V0bG9vay5jb20iLCJ1c2VyX2lkIjoiNjQxNjI1MzE0MDFkOWFmNmEzNDRlNzQ0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NzkxNzc5MzcsImV4cCI6MTY3OTE4MTUzN30.QCUSg7PahQSjZv5XxDbXduFF-1q4NJLmUFcZ8eNivzQ"
+        },
+        "tests": [],
+        "options": {
+            "baseUrl": "http://localhost:4000"
+        }
+    }
+}
