@@ -1,0 +1,347 @@
+{
+    "info": {
+        "name": "News Cover API Collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "user",
+            "item": [
+                {
+                    "name": "Get users",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/user",
+                            "host": [
+                                "user"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Register an user",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/user",
+                            "host": [
+                                "user"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"email\":\"dev_testing_tool@outlook.com\",\n  \"first_name\":\"Wilbert\",\n  \"last_name\":\"López\",\n  \"role\":{\"name\":\"user\"}\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "session",
+            "item": [
+                {
+                    "name": "Authenticate an user",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:4000/session",
+                            "path": [
+                                "session"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "4000"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"email\":\"dev_testing_tool@outlook.com\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "newsource",
+            "item": [
+                {
+                    "name": "Get news sources",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/newsource",
+                            "host": [
+                                "newsource"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add a news source",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/newsource",
+                            "host": [
+                                "newsource"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"url\":\"https://feeds.feedburner.com/NacionalesCrhoycomPeriodicoDigitalCostaRicaNoticias\",\n  \"name\":\"CR Hoy Nacionales\",\n  \"user\":\"dev_testing_tool@outlook.com\"\n  \n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Update a news source",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "/newsource/:Id",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "Id",
+                                    "value": "1"
+                                }
+                            ],
+                            "path": [
+                                ":Id"
+                            ],
+                            "host": [
+                                "newsource"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete a news source",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "/newsource/:Id",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "Id",
+                                    "value": "1"
+                                }
+                            ],
+                            "path": [
+                                ":Id"
+                            ],
+                            "host": [
+                                "newsource"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Read the RSS",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/newsource/:id/process",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": ""
+                                }
+                            ],
+                            "path": [
+                                ":id",
+                                "process"
+                            ],
+                            "host": [
+                                "newsource"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "categories",
+            "item": [
+                {
+                    "name": "Get categories",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/categories",
+                            "host": [
+                                "categories"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add a category",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/categories",
+                            "host": [
+                                "categories"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\":\"Nacionales\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Update a category",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "/categories/:Id",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "Id",
+                                    "value": "1"
+                                }
+                            ],
+                            "path": [
+                                ":Id"
+                            ],
+                            "host": [
+                                "categories"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\":\"Nacionales\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete a category",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "/categories/:Id",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "Id",
+                                    "value": "1"
+                                }
+                            ],
+                            "path": [
+                                ":Id"
+                            ],
+                            "host": [
+                                "categories"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\":\"Nacionales\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "news",
+            "item": [
+                {
+                    "name": "Get user's news",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/news/:user_id",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "user_id",
+                                    "value": ""
+                                }
+                            ],
+                            "path": [
+                                ":user_id"
+                            ],
+                            "host": [
+                                "news"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Filter news by category",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/news/:user_id?category=categoryId",
+                            "query": [
+                                {
+                                    "key": "category",
+                                    "value": "categoryId"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "key": "user_id",
+                                    "value": ""
+                                }
+                            ],
+                            "path": [
+                                ":user_id"
+                            ],
+                            "host": [
+                                "news"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldl90ZXN0aW5nX3Rvb2xAb3V0bG9vay5jb20iLCJ1c2VyX2lkIjoiNjQxNjI1MzE0MDFkOWFmNmEzNDRlNzQ0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NzkxNzc5MzcsImV4cCI6MTY3OTE4MTUzN30.QCUSg7PahQSjZv5XxDbXduFF-1q4NJLmUFcZ8eNivzQ",
+                "type": "string"
+            }
+        ]
+    }
+}
