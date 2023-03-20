@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
         })
 });
 
-router.delete('/id=:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     if (res.locals.session.role !== "admin") {
         res
             .status(401)
@@ -77,7 +77,7 @@ router.delete('/id=:id', (req, res) => {
         })
 });
 
-router.put('/id=:id', (req, res) => {
+router.put('/:id', (req, res) => {
     if (res.locals.session.role !== "admin") {
         res
             .status(401)

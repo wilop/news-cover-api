@@ -25,6 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    console.log('request', req);
     if (req.body) {
         try {
             const user = await UserModel.findOne({ "email": res.locals.session.email });
@@ -35,7 +36,7 @@ router.post('/', async (req, res) => {
             newNewsSource.url = req.body.url;
             newNewsSource.user = user;
             newNewsSource.category = category;
-
+            
             newNewsSource.save()
                 .then(newsourceAdded => {
                     res
@@ -68,7 +69,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/id=:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     if (req.body) {
         const category = await CategoryModel.findOne({ "name": req.body.category.name });
         NewsSourceModel.findByIdAndUpdate(req.params.id,
@@ -103,7 +104,7 @@ router.put('/id=:id', async (req, res) => {
     }
 });
 
-router.delete('/id=:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     if (req.params.id) {
         NewsSourceModel.findByIdAndDelete(req.params.id)
             .then(newSourceDeleted => {
