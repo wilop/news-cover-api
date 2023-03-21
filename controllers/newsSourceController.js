@@ -155,11 +155,12 @@ router.post('/:id/process', async (req, res) => {
                         newsAdded.push(newNewsAdded);
                     })
                     .catch(err => {
-                        res
+                        console.log(err)
+                        /*res
                             .status(422)
                             .json({
                                 Message: err
-                            })
+                            })*/
                     })
             }
         }
@@ -173,11 +174,11 @@ router.post('/:id/process', async (req, res) => {
         }
     } catch (err) {
         console.log("err",err)
-        res
+        /*res
             .status(422)
             .json({
                 Message: err
-            })
+            })*/
     }
 });
 
