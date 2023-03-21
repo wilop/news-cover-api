@@ -9,6 +9,7 @@ const newsSourceSchema = new Schema({
     "name": { type: String, required: true },
     "category": { type: CategorySchema.schema, required: true },
     "user": {
+        "_id": { type: mongoose.Types.ObjectId, require: true },
         "email": { type: String, required: true },
         "first_name": { type: String, required: true },
         "last_name": { type: String, required: true },
