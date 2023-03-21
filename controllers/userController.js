@@ -125,7 +125,7 @@ const addUser = (async (req, res) => {
     }
 });
 
-router.put('/id=:id', (req, res) => {
+router.put('/:id', (req, res) => {
     if (req.body) {
         UserModel.findByIdAndUpdate(req.params.id,
             {
@@ -158,7 +158,7 @@ router.put('/id=:id', (req, res) => {
     }
 });
 
-router.delete('/id=:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     if (res.locals.session.role !== "admin") {
         res
             .status(401)

@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    console.log('request', req);
+    //console.log('request', req);
     if (req.body) {
         try {
             const user = await UserModel.findOne({ "email": res.locals.session.email });
@@ -136,6 +136,7 @@ router.post('/:id/process', async (req, res) => {
     const { model: NewsModel } = require('../models/newsModel');
     const newsSources = await NewsSourceModel.find({ "user.email": res.locals.session.email });
     const newsAdded = [];
+    await NewsModel.deleteMany({ "user.email": res.locals.session.email });
 
     try {
         for (const element of newsSources) {

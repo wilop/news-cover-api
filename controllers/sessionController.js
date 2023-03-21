@@ -50,7 +50,7 @@ function getSession(token) {
     if (token) {
         try {
             const jsonToken = jwt.verify(token, secretPhrase);
-            console.log(jsonToken);
+            //console.log(jsonToken);
             return jsonToken;
         }
         catch (err) {
