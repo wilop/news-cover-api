@@ -141,7 +141,7 @@ router.post('/:id/process', async (req, res) => {
         for (const element of newsSources) {
             const feed = await parser.parseURL(element.url)
             for (const item of feed.items) {
-                console.log(item)
+                //console.log(item)
                 const newNews = NewsModel();
                 newNews.title = item.title;
                 newNews.short_description = item.contentSnippet || item.content || "No info";
@@ -155,12 +155,12 @@ router.post('/:id/process', async (req, res) => {
                         newsAdded.push(newNewsAdded);
                     })
                     .catch(err => {
-                        console.log(err)
-                        /*res
+                        //console.log(err)
+                        res
                             .status(422)
                             .json({
                                 Message: err
-                            })*/
+                            })
                     })
             }
         }
@@ -173,12 +173,12 @@ router.post('/:id/process', async (req, res) => {
                 })
         }
     } catch (err) {
-        console.log("err",err)
-        /*res
+        //console.log("err",err)
+        res
             .status(422)
             .json({
                 Message: err
-            })*/
+            })
     }
 });
 
