@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
     //console.log('request', req);
     if (req.body) {
         try {
-            console.log('body', req.body);
+            // console.log('body', req.body);
             const user = await UserModel.findOne({ "email": res.locals.session.email });
             const category = await CategoryModel.findOne({ "name": req.body.category.name });
             const newNewsSource = NewsSourceModel();
