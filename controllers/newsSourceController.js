@@ -28,6 +28,7 @@ router.post('/', async (req, res) => {
     //console.log('request', req);
     if (req.body) {
         try {
+            console.log('body', req.body);
             const user = await UserModel.findOne({ "email": res.locals.session.email });
             const category = await CategoryModel.findOne({ "name": req.body.category.name });
             const newNewsSource = NewsSourceModel();
@@ -47,6 +48,7 @@ router.post('/', async (req, res) => {
                         })
                 })
                 .catch(err => {
+                    console.log(err);
                     res
                         .status(422)
                         .json({
@@ -54,6 +56,8 @@ router.post('/', async (req, res) => {
                         })
                 })
         } catch (err) {
+                                console.log(err);
+
             res
                 .status(422)
                 .json({
@@ -142,11 +146,11 @@ router.post('/:id/process', async (req, res) => {
         for (const element of newsSources) {
             const feed = await parser.parseURL(element.url)
             for (const item of feed.items) {
-                //console.log(item)
                 const newNews = NewsModel();
                 newNews.title = item.title;
                 newNews.short_description = item.contentSnippet || item.content || "No info";
                 newNews.permalink = item.link;
+                newNews.image = item.content;
                 newNews.date = item.pubDate;
                 newNews.news_source = element;
                 newNews.user = element.user;

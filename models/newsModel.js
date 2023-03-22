@@ -10,6 +10,7 @@ const newsSchema = new Schema({
     "short_description": { type: String, required: true },
     "permalink": { type: String, required: true },
     "date": { type: Date, required: true },
+    "image": {type:String},
     "news_source": { type: newsSourceSchema.schema, required: true },
     "user": {
         "_id": { type: mongoose.Types.ObjectId, require: true },

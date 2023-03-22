@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { model: NewsModel } = require('../models/newsModel');
 
-router.get('/', (req, res) => {
+router.get('/:userId', (req, res) => {
     NewsModel.find({ "user.email": res.locals.session.email })
         .then(news => {
             res
@@ -19,17 +19,20 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/search', (req, res) => {
-    NewsModel.find({ "user.email": res.locals.session.email, "category._id": req.query.category })
+router.get('/search/:userId/', (req, res) => {
+    NewsModel.find({ "user.email": res.locals.session.email, "category.name": req.query.category })
         .then(news => {
+                       
             res
                 .status(200)
                 .json({
                     model: "news",
                     data: news
                 });
+;
         })
         .catch(err => {
+
             res
                 .status(404)
                 .json({ Message: err })
