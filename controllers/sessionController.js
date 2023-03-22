@@ -69,7 +69,7 @@ function tokenVerification(req, res, next) {
         try {
             //validate token
             const session = getSession(token);
-            console.log(session);
+            //console.log(session);
             if (session) {
                 res.locals.session = session;
                 next();
