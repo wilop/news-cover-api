@@ -3,7 +3,24 @@ const router = express.Router();
 const { model: NewsModel } = require('../models/newsModel');
 
 router.get('/', (req, res) => {
-    NewsModel.find({})
+    NewsModel.find({ "user.email": res.locals.session.email })
+        .then(news => {
+            res
+                .status(200)
+                .json({
+                    model: "news",
+                    data: news
+                });
+        })
+        .catch(err => {
+            res
+                .status(404)
+                .json({ Message: err })
+        });
+});
+
+router.get('/search', (req, res) => {
+    NewsModel.find({ "user.email": res.locals.session.email, "category.name": req.query.category })
         .then(news => {
             res
                 .status(200)

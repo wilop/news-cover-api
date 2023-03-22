@@ -41,5 +41,8 @@ app.use('/newsource', newsSource);
 const category = require('./controllers/categoryController');
 app.use('/categories',category);
 
+const news = require('./controllers/newsController');
+app.use('/news',news);
+
 // run the app
 app.listen(port, () => console.log(`App listening on port: ${port}`)); 
