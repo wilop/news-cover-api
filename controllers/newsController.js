@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/search', (req, res) => {
-    NewsModel.find({ "user.email": res.locals.session.email, "category.name": req.query.category })
+    NewsModel.find({ "user.email": res.locals.session.email, "category._id": req.query.category })
         .then(news => {
             res
                 .status(200)
