@@ -152,6 +152,7 @@ router.post('/:id/process', async (req, res) => {
                 newNews.permalink = item.link;
                 newNews.image = item.content;
                 newNews.date = item.pubDate;
+                newNews.tags = item.categories || [];
                 newNews.news_source = element;
                 newNews.user = element.user;
                 newNews.category = element.category;

@@ -10,7 +10,7 @@ const newsSchema = new Schema({
     "short_description": { type: String, required: true },
     "permalink": { type: String, required: true },
     "date": { type: Date, required: true },
-    "image": {type:String},
+    "image": { type: String },
     "news_source": { type: newsSourceSchema.schema, required: true },
     "user": {
         "_id": { type: mongoose.Types.ObjectId, require: true },
@@ -20,6 +20,7 @@ const newsSchema = new Schema({
         "role": { type: RoleSchema.schema, required: true }
     },
     "category": { type: CategorySchema.schema, required: true },
+    "tags": { type: Array, required: false }
 });
 
 const newsModel = mongoose.model('News', newsSchema);
