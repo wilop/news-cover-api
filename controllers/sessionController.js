@@ -41,10 +41,26 @@ router.post('/', async (req, res) => {
 
 });
 
-/*function addhours(date, hours) {
-    date.setTime(date.getHours() + hours * 60 * 60 * 1000);
-    return date;
-}*/
+router.get('/',(req,res)=>{
+    if(!req.body || !req.body.token){
+        res
+            .status(422)
+            .json({
+                Message:"Unprocess entity, request need token in the body"
+            })
+    }
+    let jwt=getSession(req.body.token)
+    if(jwt){
+        res
+            .status(200)
+            .json({
+                model:"Json Web Token",
+                JWT:jwt
+            })
+    }else{
+
+    }
+});
 
 function getSession(token) {
     if (token) {
@@ -54,7 +70,7 @@ function getSession(token) {
             return jsonToken;
         }
         catch (err) {
-            console.log(err);
+            //console.log(err);
             return null;
         }
     }

@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/id=:id', (req, res) => {
     if (req.params.id) {
         UserModel.findById(req.params.id)
             .then(users => {
@@ -101,7 +101,7 @@ const addUser = (async (req, res) => {
                 res
                     .status(201)
                     .header({
-                        'location': `${url}user/id=${user.id}`
+                        'location': `${url}user/search?_id=${user.id}`
                     })
                     .json({
                         model: "user",
