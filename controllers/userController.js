@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/id=:id', (req, res) => {
+router.get('/:id', (req, res) => {
     if (req.params.id) {
         UserModel.findById(req.params.id)
             .then(users => {

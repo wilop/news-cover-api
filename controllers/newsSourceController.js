@@ -4,6 +4,8 @@ const { model: NewsSourceModel } = require('../models/newsSourceModel');
 const { model: UserModel } = require('../models/userModel');
 const { model: CategoryModel } = require('../models/categoryModel');
 const Parser = require('rss-parser');
+const newsSourceModel = require('../models/newsSourceModel');
+const url = `${process.env.URL || 'http://localhost'}:${process.env.PORT || 4000}/`;
 
 router.get('/', async (req, res) => {
     NewsSourceModel.find({ "user.email": res.locals.session.email })
@@ -13,6 +15,24 @@ router.get('/', async (req, res) => {
                 .json({
                     model: "newSource",
                     data: newSourceFound
+                })
+        })
+        .catch(err => {
+            res
+                .status(404)
+                .json({
+                    Message: err
+                })
+        })
+});
+router.get('/search', (req, res) => {
+    NewsSourceModel.find(req.query)
+        .then(categories => {
+            res
+                .status(200)
+                .json({
+                    model: "category",
+                    data: categories
                 })
         })
         .catch(err => {
@@ -42,6 +62,9 @@ router.post('/', async (req, res) => {
                 .then(newsourceAdded => {
                     res
                         .status(201)
+                        .header({
+                            'location': `${url}newsource/search?_id=${newsourceAdded.id}`
+                        })
                         .json({
                             model: "newSource",
                             data: newsourceAdded

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { model: NewsModel } = require('../models/newsModel');
+const url = `${process.env.URL || 'http://localhost'}:${process.env.PORT || 4000}/`;
 
 router.get('/:userId', (req, res) => {
     NewsModel.find({ "user.email": res.locals.session.email })
@@ -19,8 +20,8 @@ router.get('/:userId', (req, res) => {
         });
 });
 
-router.get('/search/:userId/', (req, res) => {
-    NewsModel.find({ "user.email": res.locals.session.email, "category.name": req.query.category })
+router.get('/search', (req, res) => {
+    NewsModel.find(req.query)
         .then(news => {
                        
             res
@@ -45,6 +46,9 @@ router.post('/', (req, res) => {
         .then(newsAdded => {
             res
                 .status(201)
+                .header({
+                    'location': `${url}news/search?_id=${newsAdded.id}`
+                })
                 .json({
                     model: "news",
                     data: newsAdded
