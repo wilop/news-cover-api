@@ -8,7 +8,7 @@ const secretPhrase = process.env.SECRET_PHRASE || "mynewscover";
 router.post('/', async (req, res) => {
     if (req.body.email) {
         const userLoggin = await UserModel.findOne({ email: req.body.email });
-        if (userLoggin) {
+        if (userLoggin && userLoggin.password === req.body.password) {
             //const today = moment(Date.now()).add('1', 'hour');
             const newToken = jwt.sign({
                 "email": userLoggin.email,
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
             res
                 .status(404)
                 .json({
-                    Message: "Email for user not found"
+                    Message: "Email invalid or wrong password!"
                 })
         }
     }
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
         res
             .status(404)
             .json({
-                Message: "Email for user not found"
+                Message: "Unprocess entity, request need email and password in body"
             })
     }
 
