@@ -4,11 +4,11 @@ const { model: NewsSourceModel } = require('../models/newsSourceModel');
 const { model: UserModel } = require('../models/userModel');
 const { model: CategoryModel } = require('../models/categoryModel');
 const Parser = require('rss-parser');
-const newsSourceModel = require('../models/newsSourceModel');
+const { model: newsSourceModel } = require('../models/newsSourceModel');
 const url = `${process.env.URL || 'http://localhost'}:${process.env.PORT || 4000}/`;
 
 router.get('/', async (req, res) => {
-    NewsSourceModel.find({ "user.email": res.locals.session.email })
+    newsSourceModel.find({ "user.email": res.locals.session.email })
         .then(newSourceFound => {
             res
                 .status(200)
@@ -26,13 +26,13 @@ router.get('/', async (req, res) => {
         })
 });
 router.get('/search', (req, res) => {
-    NewsSourceModel.find(req.query)
-        .then(categories => {
+    newsSourceModel.find(req.query)
+        .then(newsSource => {
             res
                 .status(200)
                 .json({
-                    model: "category",
-                    data: categories
+                    model: "newssource",
+                    data: newsSource
                 })
         })
         .catch(err => {
@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
             newNewsSource.url = req.body.url;
             newNewsSource.user = user;
             newNewsSource.category = category;
-            
+
             newNewsSource.save()
                 .then(newsourceAdded => {
                     res
@@ -79,7 +79,7 @@ router.post('/', async (req, res) => {
                         })
                 })
         } catch (err) {
-                                console.log(err);
+            console.log(err);
 
             res
                 .status(422)
