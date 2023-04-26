@@ -20,6 +20,14 @@ app.use(bodyParser.json());
 const { router: session } = require('./controllers/sessionController');
 app.use('/session', session);
 
+// POST Passwordless Auth
+const { post_passwordless: post_passwordless } = require('./controllers/sessionController');
+app.post('/passwordless/:passwordless', post_passwordless);
+
+// Get Passwordless Auth
+const { get_passwordless: get_passwordless } = require('./controllers/sessionController');
+app.get('/passwordless', get_passwordless);
+
 // POST user
 const { addUser } = require('./controllers/userController')
 app.post('/user', addUser);
@@ -39,10 +47,10 @@ const newsSource = require('./controllers/newsSourceController');
 app.use('/newsource', newsSource);
 
 const category = require('./controllers/categoryController');
-app.use('/categories',category);
+app.use('/categories', category);
 
 const news = require('./controllers/newsController');
-app.use('/news',news);
+app.use('/news', news);
 
 // run the app
 app.listen(port, () => console.log(`App listening on port: ${port}`)); 

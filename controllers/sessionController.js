@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 const { model: UserModel } = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const { createHmac } = require('crypto');
+const userModel = require('../models/userModel');
+const url = `${process.env.URL || 'http://localhost'}:${process.env.PORT || 4000}/`;
 const secretPhrase = process.env.SECRET_PHRASE || "mynewscover";
 
 router.post('/', async (req, res) => {
@@ -41,23 +44,23 @@ router.post('/', async (req, res) => {
 
 });
 
-router.get('/',(req,res)=>{
-    if(!req.body || !req.body.token){
+router.get('/', (req, res) => {
+    if (!req.body || !req.body.token) {
         res
             .status(422)
             .json({
-                Message:"Unprocess entity, request need token in the body"
+                Message: "Unprocess entity, request need token in the body"
             })
     }
-    let jwt=getSession(req.body.token)
-    if(jwt){
+    let jwt = getSession(req.body.token)
+    if (jwt) {
         res
             .status(200)
             .json({
-                model:"Json Web Token",
-                JWT:jwt
+                model: "Json Web Token",
+                JWT: jwt
             })
-    }else{
+    } else {
 
     }
 });
@@ -113,8 +116,97 @@ function tokenVerification(req, res, next) {
     }
 }
 
+async function post_passwordless(req, res) {
+    if (!req.body.email || !req.body || !req.params || !req.params.passwordless) {
+        res
+            .status(404)
+            .json({
+                Message: "Unprocess entity, request need email in body and a valid password hash"
+            })
+            return;
+    }
+
+    const userLoggin = await UserModel.findOne({ email: req.body.email });
+    if (!userLoggin || !userLoggin.passwordless) {
+        res
+            .status(404)
+            .json({
+                Message: "Invalid email!"
+            })
+            return;
+    }
+
+    try {
+        if (userLoggin.passwordless === req.params.passwordless) {
+            const newToken = jwt.sign({
+                "email": userLoggin.email,
+                "user_id": userLoggin._id,
+                "role": userLoggin.role.name
+            }, secretPhrase, { expiresIn: "1h" });
+            res
+                .status(201)
+                .json({
+                    model: "session",
+                    data: userLoggin,
+                    token: newToken
+                })
+        } else {
+            res
+                .status(404)
+                .json({
+                    Message: "Email invalid or wrong password hash!"
+                })
+        }
+    } catch (err) {
+        //console.log(err)
+        res
+            .status(404)
+            .json({
+                Message: "Email invalid or wrong password hash!"
+            })
+    }
+}
+
+async function get_passwordless(req, res) {
+    if (!req.body || !req.body.email) {
+        res
+            .status(404)
+            .json({
+                Message: "Unprocess entity, request need email in body"
+            })
+    }
+    const hashPwd = createHmac('sha256', secretPhrase)
+        .update(req.body.email + Date.now() + new Date().getMilliseconds())
+        .digest('hex');
+    UserFound = await UserModel.findOne({ email: req.body.email });
+    UserFound.passwordless = hashPwd;
+    //console.log(UserFound._id)
+    UserModel.findByIdAndUpdate(UserFound._id, UserFound, { new: true })
+        .then(userUpdated => {
+            res
+                .status(200)
+                .header({
+                    'location': `${url}passwordless/${UserFound.passwordless}`
+                })
+                .json({
+                    model: "user",
+                    data: userUpdated
+                })
+        })
+        .catch(err => {
+            //console.log(err)
+            res
+                .status(422)
+                .json({
+                    Message: err
+                })
+        });
+}
+
 module.exports = {
     router,
     getSession,
-    tokenVerification
+    tokenVerification,
+    post_passwordless,
+    get_passwordless
 }
