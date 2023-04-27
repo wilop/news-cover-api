@@ -21,11 +21,11 @@ const { router: session } = require('./controllers/sessionController');
 app.use('/session', session);
 
 // POST Passwordless Auth
-const { post_passwordless: post_passwordless } = require('./controllers/sessionController');
+const { post_passwordless } = require('./controllers/sessionController');
 app.post('/passwordless/:passwordless', post_passwordless);
 
 // Get Passwordless Auth
-const { get_passwordless: get_passwordless } = require('./controllers/sessionController');
+const { get_passwordless } = require('./controllers/sessionController');
 app.get('/passwordless', get_passwordless);
 
 // POST user
