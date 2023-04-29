@@ -45,14 +45,14 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    if (!req.body || !req.body.token) {
+    if (!req.body || !req.headers['authorization']) {
         res
             .status(422)
             .json({
                 Message: "Unprocess entity, request need token in the body"
             })
     }
-    let jwt = getSession(req.body.token)
+    let jwt = getSession(req.body.token || req.headers['authorization'].split(' ')[1])
     if (jwt) {
         res
             .status(200)
