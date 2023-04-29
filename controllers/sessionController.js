@@ -44,25 +44,8 @@ router.post('/', async (req, res) => {
 
 });
 
-router.get('/', (req, res) => {
-    if (!req.body || !req.body.token) {
-        res
-            .status(422)
-            .json({
-                Message: "Unprocess entity, request need token in the body"
-            })
-    }
-    let jwt = getSession(req.body.token)
-    if (jwt) {
-        res
-            .status(200)
-            .json({
-                model: "Json Web Token",
-                JWT: jwt
-            })
-    } else {
-
-    }
+router.get('/',tokenVerification, (req, res) => {
+ res.status(200).json(res.locals.session);
 });
 
 function getSession(token) {
