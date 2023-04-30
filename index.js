@@ -20,6 +20,12 @@ app.use(bodyParser.json());
 const { router: session } = require('./controllers/sessionController');
 app.use('/session', session);
 
+const { get_otp } = require('./controllers/otpController');
+app.get('/session/otp',get_otp);
+
+const { verify_otp } = require('./controllers/otpController');
+app.get('/session/verify',verify_otp);
+
 // POST Passwordless Auth
 const { post_passwordless } = require('./controllers/sessionController');
 app.post('/passwordless/:passwordless', post_passwordless);

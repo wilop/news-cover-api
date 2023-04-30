@@ -44,8 +44,30 @@ router.post('/', async (req, res) => {
 
 });
 
+<<<<<<< HEAD
 router.get('/',tokenVerification, (req, res) => {
  res.status(200).json(res.locals.session);
+=======
+router.get('/', (req, res) => {
+    if (!req.body || !req.headers['authorization']) {
+        res
+            .status(422)
+            .json({
+                Message: "Unprocess entity, request need token in the body"
+            })
+    }
+    let jwt = getSession(req.body.token || req.headers['authorization'].split(' ')[1])
+    if (jwt) {
+        res
+            .status(200)
+            .json({
+                model: "Json Web Token",
+                JWT: jwt
+            })
+    } else {
+
+    }
+>>>>>>> 77fcf2bf60b86c09929f9fb776cb6d07131f87dd
 });
 
 function getSession(token) {
@@ -106,7 +128,7 @@ async function post_passwordless(req, res) {
             .json({
                 Message: "Unprocess entity, request need email in body and a valid password hash"
             })
-            return;
+        return;
     }
 
     const userLoggin = await UserModel.findOne({ email: req.body.email });
@@ -116,11 +138,18 @@ async function post_passwordless(req, res) {
             .json({
                 Message: "Invalid email!"
             })
-            return;
+        return;
     }
 
     try {
         if (userLoggin.passwordless === req.params.passwordless) {
+            userLoggin.passwordless = "";
+            UserModel.findByIdAndUpdate(userLoggin._id, userLoggin, { new: true })
+            .then(userU=>{
+                //console.log("deleted",userU);
+            }).catch(e=>{
+                //console.log(e);
+            });
             const newToken = jwt.sign({
                 "email": userLoggin.email,
                 "user_id": userLoggin._id,
@@ -166,6 +195,8 @@ async function get_passwordless(req, res) {
     //console.log(UserFound._id)
     UserModel.findByIdAndUpdate(UserFound._id, UserFound, { new: true })
         .then(userUpdated => {
+            const { send_email_to } = require('./emailController');
+            send_email_to(UserFound.email, `${url}passwordless/${UserFound.passwordless}`);
             res
                 .status(200)
                 .header({
@@ -177,7 +208,7 @@ async function get_passwordless(req, res) {
                 })
         })
         .catch(err => {
-            //console.log(err)
+            console.log(err)
             res
                 .status(422)
                 .json({
