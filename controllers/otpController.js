@@ -15,7 +15,7 @@ function get_otp(req, res) {
         .verifications
         .create({ to: req.body.phone, channel: 'whatsapp' })
         .then(verification => {
-            console.log(verification.status);
+            //console.log(verification.status);
             res.status(200).send(verification)
         });
 }
@@ -33,7 +33,7 @@ function verify_otp(req, res) {
         .verificationChecks
         .create({ to: req.body.phone, code: req.body.code })
         .then(verification => {
-            console.log(verification.status);
+            //console.log(verification.status);
             res.status(200).send(verification)
         });
 }
