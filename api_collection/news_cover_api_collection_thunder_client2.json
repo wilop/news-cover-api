@@ -1,0 +1,385 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "News Cover API Collection",
+    "dateExported": "2023-04-30T23:03:44.926Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "4b16d1a8-8d30-4afa-9f3b-5cc6630a012a",
+            "name": "user",
+            "containerId": "",
+            "created": "2023-04-16T03:40:00.122Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "aaa10874-3b26-45bb-b321-780388b68384",
+            "name": "session",
+            "containerId": "",
+            "created": "2023-04-16T03:40:00.123Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "026aac9b-dfcf-4f24-ba89-ccd43872282b",
+            "name": "newsource",
+            "containerId": "",
+            "created": "2023-04-16T03:40:00.124Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "a20a9ce2-9690-47ee-94cd-674260c2b59e",
+            "name": "categories",
+            "containerId": "",
+            "created": "2023-04-16T03:40:00.125Z",
+            "sortNum": 70000
+        },
+        {
+            "_id": "a278bee2-2ca8-414c-b970-fb1128650542",
+            "name": "news",
+            "containerId": "",
+            "created": "2023-04-16T03:40:00.126Z",
+            "sortNum": 80000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "24d851b8-bd29-4cbf-b268-9bd329bf8101",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "4b16d1a8-8d30-4afa-9f3b-5cc6630a012a",
+            "name": "Get users",
+            "url": "/user/search?_id=643b7a1d9ee0aff1d175a8b3",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-04-16T03:40:00.122Z",
+            "modified": "2023-04-16T04:41:07.463Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "_id",
+                    "value": "643b7a1d9ee0aff1d175a8b3",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldl90ZXN0aW5nX3Rvb2xAb3V0bG9vay5jb20iLCJ1c2VyX2lkIjoiNjQzYjZmODg3ZDA0YjFmN2M4YTliZjJhIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODE2MTY3ODUsImV4cCI6MTY4MTYyMDM4NX0.PbJzXXNWLN1Y3p5SbnYON1dDPBRuKHGlegWvzV0ibiI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e6f8c1ef-96c5-4796-b17a-f6ad1389b5c8",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "4b16d1a8-8d30-4afa-9f3b-5cc6630a012a",
+            "name": "Register an user",
+            "url": "/user",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-04-16T03:40:00.123Z",
+            "modified": "2023-04-26T19:17:47.127Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"dev_testing_tool@outlook.com\",\n  \"first_name\":\"Wilbert\",\n  \"last_name\":\"López\",\n  \"password\":\"123123\",\n  \"phone\":\"12345678\",\n  \"role\":{\"name\":\"user\"}\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9a69d412-0cdb-4db5-ac47-2c117924f100",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "aaa10874-3b26-45bb-b321-780388b68384",
+            "name": "Authenticate an user",
+            "url": "/session",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-04-16T03:40:00.124Z",
+            "modified": "2023-04-16T21:55:59.946Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"gespinozac@est.utn.ac.cr\",\n  \"password\":\"123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "bdb5a7e9-3244-4c37-8f57-cd7f3315698f",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "026aac9b-dfcf-4f24-ba89-ccd43872282b",
+            "name": "Get news sources",
+            "url": "/newsource/search?_id=643b7d97309a4cbf1be6fdd6",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-04-16T03:40:00.125Z",
+            "modified": "2023-04-26T18:39:54.696Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "_id",
+                    "value": "643b7d97309a4cbf1be6fdd6",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdlc3Bpbm96YWNAZXN0LnV0bi5hYy5jciIsInVzZXJfaWQiOiI2NDNiN2ExZDllZTBhZmYxZDE3NWE4YjMiLCJyb2xlIjoidXNlciIsImlhdCI6MTY4MjUzNDM3NSwiZXhwIjoxNjgyNTM3OTc1fQ.aJu2O7MV9IdVqq6K0W9udTiIWzeam_1ct9DVUvvM28E"
+            },
+            "tests": []
+        },
+        {
+            "_id": "828b8d9a-0661-4833-b6b6-937d74347c85",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "026aac9b-dfcf-4f24-ba89-ccd43872282b",
+            "name": "Add a news source",
+            "url": "/newsource",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-04-16T03:40:00.126Z",
+            "modified": "2023-04-16T03:40:00.126Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"url\":\"https://feeds.feedburner.com/NacionalesCrhoycomPeriodicoDigitalCostaRicaNoticias\",\n  \"name\":\"CR Hoy Nacionales\",\n  \"user\":\"dev_testing_tool@outlook.com\"\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "61dcbe24-921c-49a6-9aec-a83bcbaf5812",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "a20a9ce2-9690-47ee-94cd-674260c2b59e",
+            "name": "Get categories",
+            "url": "/categories",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-04-16T03:40:00.127Z",
+            "modified": "2023-04-16T03:40:00.127Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e7a62f30-3575-4e7f-ba92-70354b4059d2",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "a20a9ce2-9690-47ee-94cd-674260c2b59e",
+            "name": "Add a category",
+            "url": "/categories",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2023-04-16T03:40:00.128Z",
+            "modified": "2023-04-16T03:40:00.128Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Nacionales\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "bd6354a0-b484-4927-b4f3-383a28253cb9",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "a20a9ce2-9690-47ee-94cd-674260c2b59e",
+            "name": "Update a category",
+            "url": "/categories/{Id}",
+            "method": "PUT",
+            "sortNum": 130000,
+            "created": "2023-04-16T03:40:00.129Z",
+            "modified": "2023-04-16T03:40:00.129Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "Id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Nacionales\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "186924f6-c7d7-4e49-a89b-cbf434159e47",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "a20a9ce2-9690-47ee-94cd-674260c2b59e",
+            "name": "Delete a category",
+            "url": "/categories/{Id}",
+            "method": "DELETE",
+            "sortNum": 150000,
+            "created": "2023-04-16T03:40:00.130Z",
+            "modified": "2023-04-16T03:40:00.130Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "Id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Nacionales\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f9146785-cc06-4ef4-9bf3-f52fe61a1799",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "026aac9b-dfcf-4f24-ba89-ccd43872282b",
+            "name": "Update a news source",
+            "url": "/newsource/{Id}",
+            "method": "PUT",
+            "sortNum": 160000,
+            "created": "2023-04-16T03:40:00.131Z",
+            "modified": "2023-04-16T03:40:00.131Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "Id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "ee34ffd0-f344-48ac-b1e6-3857e7cfd4ef",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "026aac9b-dfcf-4f24-ba89-ccd43872282b",
+            "name": "Delete a news source",
+            "url": "/newsource/{Id}",
+            "method": "DELETE",
+            "sortNum": 170000,
+            "created": "2023-04-16T03:40:00.132Z",
+            "modified": "2023-04-16T03:40:00.132Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "Id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "33a200dc-33ce-4c52-b3ac-57676fef920f",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "026aac9b-dfcf-4f24-ba89-ccd43872282b",
+            "name": "Read the RSS",
+            "url": "/newsource/643b7a1d9ee0aff1d175a8b3/process",
+            "method": "POST",
+            "sortNum": 180000,
+            "created": "2023-04-16T03:40:00.133Z",
+            "modified": "2023-04-16T04:52:37.108Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdlc3Bpbm96YWNAZXN0LnV0bi5hYy5jciIsInVzZXJfaWQiOiI2NDNiN2ExZDllZTBhZmYxZDE3NWE4YjMiLCJyb2xlIjoidXNlciIsImlhdCI6MTY4MTYyMDUxOCwiZXhwIjoxNjgxNjI0MTE4fQ.oV5spBE6tscuck-GW_290RyKW_6PGWSEZQKTwCN00oM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c9ff6348-1ba1-4132-aa45-25528bf02502",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "a278bee2-2ca8-414c-b970-fb1128650542",
+            "name": "Get user's news",
+            "url": "/news/{user_id}",
+            "method": "GET",
+            "sortNum": 190000,
+            "created": "2023-04-16T03:40:00.134Z",
+            "modified": "2023-04-16T03:40:00.134Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "user_id",
+                    "value": "",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "eb552784-f035-4ed3-acf5-99f13a63bd2f",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "a278bee2-2ca8-414c-b970-fb1128650542",
+            "name": "Filter news by category",
+            "url": "/news/{user_id}?category=categoryId",
+            "method": "GET",
+            "sortNum": 200000,
+            "created": "2023-04-16T03:40:00.135Z",
+            "modified": "2023-04-16T03:40:00.135Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "user_id",
+                    "value": "",
+                    "isPath": true
+                },
+                {
+                    "name": "category",
+                    "value": "categoryId",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "2dfb05c8-9123-4572-8ed2-d8e75ec2c99e",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "aaa10874-3b26-45bb-b321-780388b68384",
+            "name": "POST Passwordless Auth",
+            "url": "http://localhost:4000/passwordless/506250787579dd12fcd1992e0e61225357849aae022bd760cf515837f439e6c5",
+            "method": "POST",
+            "sortNum": 220000,
+            "created": "2023-04-26T18:27:56.184Z",
+            "modified": "2023-04-30T23:01:34.516Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"dev_testing_tool@outlook.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "46ae2684-3b63-4787-8b98-2a1f97add08e",
+            "colId": "db30af66-4d26-4b71-a75a-976a9c1253c4",
+            "containerId": "aaa10874-3b26-45bb-b321-780388b68384",
+            "name": "Passwordless Auth",
+            "url": "/passwordless",
+            "method": "GET",
+            "sortNum": 230000,
+            "created": "2023-04-26T19:00:35.460Z",
+            "modified": "2023-04-30T23:03:36.782Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"gespinozac@est.utn.ac.cr\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ],
+    "settings": {
+        "headers": [],
+        "auth": {
+            "type": "bearer",
+            "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldl90ZXN0aW5nX3Rvb2xAb3V0bG9vay5jb20iLCJ1c2VyX2lkIjoiNjQxNjI1MzE0MDFkOWFmNmEzNDRlNzQ0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NzkxNzc5MzcsImV4cCI6MTY3OTE4MTUzN30.QCUSg7PahQSjZv5XxDbXduFF-1q4NJLmUFcZ8eNivzQ"
+        },
+        "tests": [],
+        "options": {
+            "baseUrl": "http://localhost:4000"
+        }
+    }
+}
