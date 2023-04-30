@@ -174,11 +174,11 @@ async function get_passwordless(req, res) {
     UserModel.findByIdAndUpdate(UserFound._id, UserFound, { new: true })
         .then(userUpdated => {
             const { send_email_to } = require('./emailController');
-            send_email_to(UserFound.email, `${url}passwordless/${UserFound.passwordless}`);
+            send_email_to(UserFound.email, `http://localhost:3000/passwordless/${UserFound.passwordless}`);
             res
                 .status(200)
                 .header({
-                    'location': `${url}passwordless/${UserFound.passwordless}`
+                    'location': `http://localhost:3000/passwordless/${UserFound.passwordless}`
                 })
                 .json({
                     model: "user",
