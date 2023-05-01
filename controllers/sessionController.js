@@ -104,7 +104,7 @@ async function post_passwordless(req, res) {
         res
             .status(404)
             .json({
-                Message: "Unprocess entity, request need email in body and a valid password hash"
+                Message: "Unprocess entity, request need email and a valid password hash"
             })
         return;
     }
@@ -167,11 +167,11 @@ async function get_passwordless(req, res) {
         res
             .status(404)
             .json({
-                Message: "Unprocess entity, request need email in body"
+                Message: "Unprocess entity, request need email"
             })
     }
     const hashPwd = createHmac('sha256', secretPhrase)
-        .update(req.body.email + Date.now() + new Date().getMilliseconds())
+        .update(req.query.email + Date.now() + new Date().getMilliseconds())
         .digest('hex');
     UserFound = await UserModel.findOne({ email: req.query.email });
     UserFound.passwordless = hashPwd;
