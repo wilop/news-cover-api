@@ -28,7 +28,7 @@ app.get('/session/verify',verify_otp);
 
 // POST Passwordless Auth
 const { post_passwordless } = require('./controllers/sessionController');
-app.post('/passwordless/:passwordless', post_passwordless);
+app.post('/passwordless', post_passwordless);
 
 // Get Passwordless Auth
 const { get_passwordless } = require('./controllers/sessionController');

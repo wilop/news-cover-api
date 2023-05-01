@@ -22,7 +22,14 @@ router.post('/', async (req, res) => {
                 .status(201)
                 .json({
                     model: "session",
-                    data: userLoggin,
+                    data: {
+                          "email": userLoggin.email,
+                      "first_name": userLoggin.first_name,
+                      "last_name": userLoggin.last_name,
+                        "user_id": userLoggin._id,
+                        "role": userLoggin.role.name,
+                        "phone": userLoggin.phone
+                    },
                     token: newToken
                 })
         }
@@ -139,6 +146,8 @@ async function post_passwordless(req, res) {
                     model: "session",
                     data: {
                         "email": userLoggin.email,
+                      "first_name": userLoggin.first_name,
+                      "last_name": userLoggin.last_name,
                         "user_id": userLoggin._id,
                         "role": userLoggin.role.name,
                         "phone": userLoggin.phone
@@ -171,7 +180,7 @@ async function get_passwordless(req, res) {
             })
     }
     const hashPwd = createHmac('sha256', secretPhrase)
-        .update(req.body.email + Date.now() + new Date().getMilliseconds())
+        .update(req.query.email + Date.now() + new Date().getMilliseconds())
         .digest('hex');
     UserFound = await UserModel.findOne({ email: req.query.email });
     UserFound.passwordless = hashPwd;
