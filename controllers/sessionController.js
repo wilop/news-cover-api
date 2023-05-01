@@ -111,7 +111,7 @@ async function post_passwordless(req, res) {
         res
             .status(404)
             .json({
-                Message: "Unprocess entity, request need email in body and a valid password hash"
+                Message: "Unprocess entity, request need email and a valid password hash"
             })
         return;
     }
@@ -176,7 +176,7 @@ async function get_passwordless(req, res) {
         res
             .status(404)
             .json({
-                Message: "Unprocess entity, request need email in body"
+                Message: "Unprocess entity, request need email"
             })
     }
     const hashPwd = createHmac('sha256', secretPhrase)
@@ -188,11 +188,11 @@ async function get_passwordless(req, res) {
     UserModel.findByIdAndUpdate(UserFound._id, UserFound, { new: true })
         .then(userUpdated => {
             const { send_email_to } = require('./emailController');
-            send_email_to(UserFound.email, `http://localhost:3000/passwordless?pwd=${UserFound.passwordless}`);
+            send_email_to(UserFound.email, `http://localhost:3000/passwordless?email=${UserFound.email}&pwd=${UserFound.passwordless}`);
             res
                 .status(200)
                 .header({
-                    'location': `http://localhost:3000/passwordless?pwd=${UserFound.passwordless}`
+                    'location': `http://localhost:3000/passwordless?email=${UserFound.email}&pwd=${UserFound.passwordless}`
                 })
                 .json({
                     model: "user",

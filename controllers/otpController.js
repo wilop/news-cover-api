@@ -14,6 +14,7 @@ function get_otp(req, res) {
     client.verify.v2.services('VA4a071f4af1d984349d3f3e411881d941')
         .verifications
         .create({ to: `+${req.query.phone}`, channel: 'whatsapp' })
+        .create({ to: "+" + req.query.phone, channel: 'whatsapp' })
         .then(verification => {
             //console.log(verification.status);
             res.status(200).send(verification)
@@ -33,6 +34,7 @@ function verify_otp(req, res) {
     client.verify.v2.services('VA4a071f4af1d984349d3f3e411881d941')
         .verificationChecks
         .create({ to: `+${req.query.phone}`, code: req.query.code })
+        .create({ to: "+"+req.query.phone, code: req.query.code })
         .then(verification => {
             //console.log(verification.status);
             res.status(200).send(verification)
