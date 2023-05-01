@@ -23,9 +23,9 @@ router.post('/', async (req, res) => {
                 .json({
                     model: "session",
                     data: {
-                          "email": userLoggin.email,
-                      "first_name": userLoggin.first_name,
-                      "last_name": userLoggin.last_name,
+                        "email": userLoggin.email,
+                        "first_name": userLoggin.first_name,
+                        "last_name": userLoggin.last_name,
                         "user_id": userLoggin._id,
                         "role": userLoggin.role.name,
                         "phone": userLoggin.phone
@@ -146,8 +146,8 @@ async function post_passwordless(req, res) {
                     model: "session",
                     data: {
                         "email": userLoggin.email,
-                      "first_name": userLoggin.first_name,
-                      "last_name": userLoggin.last_name,
+                        "first_name": userLoggin.first_name,
+                        "last_name": userLoggin.last_name,
                         "user_id": userLoggin._id,
                         "role": userLoggin.role.name,
                         "phone": userLoggin.phone
@@ -178,6 +178,7 @@ async function get_passwordless(req, res) {
             .json({
                 Message: "Unprocess entity, request need email"
             })
+        return;
     }
     const hashPwd = createHmac('sha256', secretPhrase)
         .update(req.query.email + Date.now() + new Date().getMilliseconds())
