@@ -44,8 +44,8 @@ router.post('/', async (req, res) => {
 
 });
 
-router.get('/',tokenVerification, (req, res) => {
- res.status(200).json(res.locals.session);
+router.get('/', tokenVerification, (req, res) => {
+    res.status(200).json(res.locals.session);
 });
 
 function getSession(token) {
@@ -100,7 +100,7 @@ function tokenVerification(req, res, next) {
 }
 
 async function post_passwordless(req, res) {
-    if (!req.body.email || !req.body || !req.params || !req.params.passwordless) {
+    if (!req.query.email || !req.query || !req.query || !req.query.pwd) {
         res
             .status(404)
             .json({
@@ -109,7 +109,7 @@ async function post_passwordless(req, res) {
         return;
     }
 
-    const userLoggin = await UserModel.findOne({ email: req.body.email });
+    const userLoggin = await UserModel.findOne({ email: req.query.email });
     if (!userLoggin || !userLoggin.passwordless) {
         res
             .status(404)
@@ -120,14 +120,14 @@ async function post_passwordless(req, res) {
     }
 
     try {
-        if (userLoggin.passwordless === req.params.passwordless) {
+        if (userLoggin.passwordless === req.query.pwd) {
             userLoggin.passwordless = "";
             UserModel.findByIdAndUpdate(userLoggin._id, userLoggin, { new: true })
-            .then(userU=>{
-                //console.log("deleted",userU);
-            }).catch(e=>{
-                //console.log(e);
-            });
+                .then(userU => {
+                    //console.log("deleted",userU);
+                }).catch(e => {
+                    //console.log(e);
+                });
             const newToken = jwt.sign({
                 "email": userLoggin.email,
                 "user_id": userLoggin._id,
@@ -137,7 +137,12 @@ async function post_passwordless(req, res) {
                 .status(201)
                 .json({
                     model: "session",
-                    data: userLoggin,
+                    data: {
+                        "email": userLoggin.email,
+                        "user_id": userLoggin._id,
+                        "role": userLoggin.role.name,
+                        "phone": userLoggin.phone
+                    },
                     token: newToken
                 })
         } else {
@@ -158,7 +163,7 @@ async function post_passwordless(req, res) {
 }
 
 async function get_passwordless(req, res) {
-    if (!req.body || !req.body.email) {
+    if (!req.query || !req.query.email) {
         res
             .status(404)
             .json({
@@ -168,17 +173,17 @@ async function get_passwordless(req, res) {
     const hashPwd = createHmac('sha256', secretPhrase)
         .update(req.body.email + Date.now() + new Date().getMilliseconds())
         .digest('hex');
-    UserFound = await UserModel.findOne({ email: req.body.email });
+    UserFound = await UserModel.findOne({ email: req.query.email });
     UserFound.passwordless = hashPwd;
     //console.log(UserFound._id)
     UserModel.findByIdAndUpdate(UserFound._id, UserFound, { new: true })
         .then(userUpdated => {
             const { send_email_to } = require('./emailController');
-            send_email_to(UserFound.email, `http://localhost:3000/passwordless/${UserFound.passwordless}`);
+            send_email_to(UserFound.email, `http://localhost:3000/passwordless?pwd=${UserFound.passwordless}`);
             res
                 .status(200)
                 .header({
-                    'location': `http://localhost:3000/passwordless/${UserFound.passwordless}`
+                    'location': `http://localhost:3000/passwordless?pwd=${UserFound.passwordless}`
                 })
                 .json({
                     model: "user",
